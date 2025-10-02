@@ -1,6 +1,18 @@
 #include <iostream>
 
-using namespace std;
+using std::cout;
+using std::endl;
+int vector(){
+
+}
+
+int array(){
+
+}
+
+int linked_list(){
+
+}
 
 int index_count(int length){
     int index = (length * 0.1) - 1;
