@@ -1,11 +1,13 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+using namespace std;
 
-using std::cout;
-using std::endl;
-
-int read_file(){
-    
+int read_file(string& file_path){
+    ifstream file(file_path);
 }
+
 int vector(){
 
 }
