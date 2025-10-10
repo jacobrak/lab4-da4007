@@ -101,6 +101,7 @@ list<float> read_list(string& file_path){
     file.close();
     return data;
 }
+
 // Calculates top decentile for list using a list 
 float calc_top_decentile_list(list<float>& data){
     // sort
@@ -130,17 +131,20 @@ int main(int argc, char* argv[]){
         cout << calc_top_decentile_vector(data) << endl;
         return 0;
     }
+
     if (method == "array"){
         static array<float, 10000000> data;
         int count = read_array(path, data);
         cout << calc_top_decentile_array(data, count) << endl;
         return 0;
     }
+
     if (method == "list"){
         auto data = read_list(path);
         cout << calc_top_decentile_list(data) << endl;
         return 0;
     }
-    cerr << "Nonecallable argument used, use: vector, array or list" << endl;
+    
+    cerr << "Nonecallable argument used, use: 'vector', 'array' or 'list'" << endl;
     return 1;
 }
