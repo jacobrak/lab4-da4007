@@ -139,7 +139,7 @@ int main(int argc, char* argv[]){
     }
 
     if (method == "array"){
-        static array<float, 10000000> data;
+        static array<float, MAX_SIZE_10M> data;
         int count = read_array(path, data);
         cout << calc_top_decentile_array(data, count) << endl;
         return 0;
