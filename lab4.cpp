@@ -32,6 +32,8 @@ int index_count(int length){
 // reads file and stores in vector
 vector<float> read_vector(string& file_path){
     ifstream file(file_path);
+
+    // incase of bad file
     if(!file.is_open()){
         cerr << "Error: while opening file '" << file_path << "'" << endl;
         exit(1);
@@ -60,6 +62,8 @@ float calc_top_decentile_vector(vector<float>& data){
 // reads array data from file
 int read_array(string& file_path, array<float, MAX_SIZE_10M>& data){
     ifstream file(file_path);
+
+    // incase of bad file
     if(!file.is_open()){
         cerr << "Error: while opening file '" << file_path << "'" << endl;
         exit(1);
@@ -87,6 +91,8 @@ float calc_top_decentile_array(array<float, MAX_SIZE_10M>& data, int count){
 // Reads list data and creates a list object to store data
 list<float> read_list(string& file_path){
     ifstream file(file_path);
+
+    // incase of bad file
     if(!file.is_open()){
         cerr << "Error: while opening file '" << file_path << "'" << endl;
         exit(1);
@@ -111,7 +117,7 @@ float calc_top_decentile_list(list<float>& data){
     
     auto it = data.begin();
     for (auto i=0; i < valid_index && it != data.end(); i++){
-        // traverse
+        // traverse the linked list
         ++it;
     }
     return *it;
@@ -144,7 +150,7 @@ int main(int argc, char* argv[]){
         cout << calc_top_decentile_list(data) << endl;
         return 0;
     }
-    
+
     cerr << "Nonecallable argument used, use: 'vector', 'array' or 'list'" << endl;
     return 1;
 }
