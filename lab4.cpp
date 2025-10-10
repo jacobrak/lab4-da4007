@@ -2,8 +2,21 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <cmath>
 using namespace std;
 
+bool compare_func(const float& a, const float& b){
+    return a > b;
+}
+
+int index_count(int length){
+    // get the ceiling - 1
+    int index = ceil(length * 0.1) - 1;
+
+
+    return index;
+}
 
 int read_file(string& file_path){
     ifstream file(file_path);
@@ -26,8 +39,15 @@ vector<float> read_vector(string& file_path){
     file.close();
     return data;
 }
-int use_vector(int data){
-    return 0;
+
+int use_vector(vector<float>& data){
+    sort(data.begin(), data.end(), compare_func);
+    int array_size = data.size();
+    int valid_index = index_count(array_size);
+
+
+
+    return data[valid_index];
 }
 
 int use_array(int data){
@@ -38,10 +58,7 @@ int use_linked_list(int data){
     return 0;
 }
 
-int index_count(int length){
-    int index = (length * 0.1) - 1;
-    return index;
-}
+
 
 int main(int argc, char* argv[]){
     if (argc < 3){
@@ -53,11 +70,11 @@ int main(int argc, char* argv[]){
     
     string method = argv[1];
     cout << method << endl;
+    cout << index_count(9) << endl;
     if (method == "vector"){
         auto data = read_vector(path);
-            for (auto value : data) {
-                cout << value << " ";
-            }
+        use_vector(data);
+
         return 0;
     }
     if (method == "array"){
@@ -68,6 +85,6 @@ int main(int argc, char* argv[]){
         use_linked_list(data);
         return 0;
     }
-    cout << index_count(20) << endl;
+    
     return 0;
 }
