@@ -5,8 +5,10 @@
 #include <algorithm>
 #include <cmath>
 #include <array>
+#include <list>
 using namespace std;
 // Hyperparameter
+// allocate 10m for largest dataset
 constexpr int MAX_SIZE_10M = 10000000;
 
 bool compare_func(const float& a, const float& b){
@@ -16,8 +18,6 @@ bool compare_func(const float& a, const float& b){
 int index_count(int length){
     // get the ceiling - 1
     int index = ceil(length * 0.1) - 1;
-
-
     return index;
 }
 
@@ -40,7 +40,7 @@ float use_vector(vector<float>& data){
 
     return data[valid_index];
 }
-// allocate 10m for largest dataset
+
 int read_array(string& file_path, array<float, MAX_SIZE_10M>& data){
     ifstream file(file_path);
     
@@ -60,6 +60,31 @@ float use_array(array<float, MAX_SIZE_10M>& data, int count){
     int valid_index = index_count(count);
 
     return data[valid_index];
+}
+
+int read_array(string& file_path, array<float, MAX_SIZE_10M>& data){
+    ifstream file(file_path);
+    
+    int count = 0;
+    string line;
+    while (getline(file, line)){
+        data[count] = stof(line);
+        count += 1;
+    }
+
+    file.close();
+    return count;
+}
+list<float> read_list(string& file_path, list<float>& data){
+    ifstream file(file_path);
+    
+    string line;
+    while (getline(file, line)){
+        data.push_back(stof(line));
+    }
+
+    file.close();
+    return data;
 }
 
 int use_linked_list(int data){
